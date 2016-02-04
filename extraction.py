@@ -251,21 +251,3 @@ def heegaard_to_twister(digested):
     words = digested[:2]
     heeg_datum = digested[2:]
     return twister_string(heeg_datum,words)
-
-import os
-
-def twister_write(name,digested):
-    sname = name + ".sur"
-    os.system("touch " + sname)
-    s = open(sname,'w')
-    s.write(heegaard_to_twister(digested))
-    s.close()
-    tname = name + ".tri"
-    command = "./Twister.out -f \"" + sname + "\" "
-    command = command + "-s \"\" "
-    handles = "-h \"a*b*c*"
-    wds = digested[:2]
-    handles = handles + wds[0] + "*" + wds[1] + "\" "
-    command = command + handles
-    command = command + "> " + tname
-    os.system(command)

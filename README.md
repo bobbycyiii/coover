@@ -3,7 +3,12 @@ Glue code between John Berge's program
 [`heegaard`](https://www.math.uic.edu/t3m) and Mark Bell,
 Tracy Hall, and Saul Schleimer's program
 [`twister`](https://bitbucket.org/Mark_Bell/twister), in two
-parts: digestion and extraction.
+parts: digestion and extraction. 
+
+This completes the first implementation
+of a solution to the following problem: given a realizable finite
+presentation *P* of a group *G*, to construct a (possibly ideal) 3-manifold
+triangulation with fundamental group *G*.
 
 ## Digestion
 Using a series of regular expressions, digestion
@@ -29,7 +34,7 @@ Extraction recovers from *X* a cubulation *K* of *S* and
 two disjoint sets *D*, *H* of disjoint "hyperplanes" 
 (i.e. *K*-normal curves which cut no corners) such that
 attaching 2-handles to one side of *S x I* along *D* yields
-a |*D*|-punctured genus |*D*| handlebody, and such that
+a |*D*|-punctured genus-|*D*| handlebody, and such that
 attaching discs along *D* on one side of *S* and along
 *H* on the other side yields a 2-complex homotopy equivalent
 to *X*, namely the Heegaard-splitting complex. (*X* is 
@@ -37,4 +42,4 @@ homotopy-equivalent to the Heegaard-splitting complex
 by the contractibility of the cores and co-cores of the
 handles in the handlebody.)
 
-A better explanation is upcoming work.
+A less opaque explanation is upcoming work.
