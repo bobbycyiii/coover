@@ -1,14 +1,14 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2015/dev/Debian) (preloaded format=latex 2015.11.26)  5 FEB 2016 16:42
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=latex 2015.8.11)  8 FEB 2016 16:39
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
 **coover.tex
 (./coover.tex
-LaTeX2e <2014/05/01>
-Babel <3.9l> and hyphenation patterns for 2 languages loaded.
-(/usr/share/texlive/texmf-dist/tex/latex/base/article.cls
+LaTeX2e <2015/01/01>
+Babel <3.9l> and hyphenation patterns for 79 languages loaded.
+(/usr/sms/share/TeXLive/2015/texmf-dist/tex/latex/base/article.cls
 Document Class: article 2014/09/29 v1.4h Standard LaTeX document class
-(/usr/share/texlive/texmf-dist/tex/latex/base/size10.clo
+(/usr/sms/share/TeXLive/2015/texmf-dist/tex/latex/base/size10.clo
 File: size10.clo 2014/09/29 v1.4h Standard LaTeX file (size option)
 )
 \c@part=\count79
@@ -23,24 +23,24 @@ File: size10.clo 2014/09/29 v1.4h Standard LaTeX file (size option)
 \belowcaptionskip=\skip42
 \bibindent=\dimen102
 )
-(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsmath.sty
+(/usr/sms/share/TeXLive/2015/texmf-dist/tex/latex/amsmath/amsmath.sty
 Package: amsmath 2013/01/14 v2.14 AMS math features
 \@mathmargin=\skip43
 
 For additional information on amsmath, use the `?' option.
-(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amstext.sty
+(/usr/sms/share/TeXLive/2015/texmf-dist/tex/latex/amsmath/amstext.sty
 Package: amstext 2000/06/29 v2.01
 
-(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsgen.sty
+(/usr/sms/share/TeXLive/2015/texmf-dist/tex/latex/amsmath/amsgen.sty
 File: amsgen.sty 1999/11/30 v2.0
 \@emptytoks=\toks14
 \ex@=\dimen103
 ))
-(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsbsy.sty
+(/usr/sms/share/TeXLive/2015/texmf-dist/tex/latex/amsmath/amsbsy.sty
 Package: amsbsy 1999/11/29 v1.2d
 \pmbraise@=\dimen104
 )
-(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsopn.sty
+(/usr/sms/share/TeXLive/2015/texmf-dist/tex/latex/amsmath/amsopn.sty
 Package: amsopn 1999/12/14 v2.01 operator names
 )
 \inf@bad=\count87
@@ -81,18 +81,18 @@ LaTeX Font Info:    Redeclaring font encoding OMS on input line 567.
 LaTeX Info: Redefining \[ on input line 2665.
 LaTeX Info: Redefining \] on input line 2666.
 )
-(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/amsfonts.sty
+(/usr/sms/share/TeXLive/2015/texmf-dist/tex/latex/amsfonts/amsfonts.sty
 Package: amsfonts 2013/01/14 v3.01 Basic AMSFonts support
 \symAMSa=\mathgroup4
 \symAMSb=\mathgroup5
 LaTeX Font Info:    Overwriting math alphabet `\mathfrak' in version `bold'
 (Font)                  U/euf/m/n --> U/euf/b/n on input line 106.
 )
-(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/amssymb.sty
+(/usr/sms/share/TeXLive/2015/texmf-dist/tex/latex/amsfonts/amssymb.sty
 Package: amssymb 2013/01/14 v3.01 AMS font symbols
 )
-(/usr/share/texlive/texmf-dist/tex/latex/amscls/amsthm.sty
-Package: amsthm 2009/07/02 v2.20.1
+(/usr/sms/share/TeXLive/2015/texmf-dist/tex/latex/amscls/amsthm.sty
+Package: amsthm 2015/03/04 v2.20.2
 \thm@style=\toks19
 \thm@bodyfont=\toks20
 \thm@headfont=\toks21
@@ -103,20 +103,18 @@ Package: amsthm 2009/07/02 v2.20.1
 \thm@headsep=\skip48
 \dth@everypar=\toks24
 )
-(/usr/share/texmf/tex/plain/misc/noweb.sty
+(./noweb.sty
 \nwmarginglue=\dimen112
 \codehsize=\dimen113
 \codemargin=\dimen114
 \nwdefspace=\dimen115
 \equivbox=\box28
 LaTeX Font Info:    Try loading font information for U+msa on input line 79.
-
-(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsa.fd
+ (/usr/sms/share/TeXLive/2015/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
 LaTeX Font Info:    Try loading font information for U+msb on input line 79.
-
-(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd
+ (/usr/sms/share/TeXLive/2015/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
 \plusequivbox=\box29
@@ -138,7 +136,8 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 \nwix@counter=\count110
 )
 \c@theorem=\count111
- (./coover.aux)
+
+(./coover.aux)
 \openout1 = `coover.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 28.
@@ -153,8 +152,7 @@ LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 28.
 LaTeX Font Info:    ... okay on input line 28.
 LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 28.
 LaTeX Font Info:    ... okay on input line 28.
-
-[1
+ [1
 
 ]
 Overfull \hbox (13.64845pt too wide) in paragraph at lines 124--124
@@ -216,20 +214,38 @@ Overfull \hbox (117.59724pt too wide) in paragraph at lines 191--191
 [4]
 LaTeX Font Info:    Try loading font information for OMS+cmr on input line 211.
 
- (/usr/share/texlive/texmf-dist/tex/latex/base/omscmr.fd
+ (/usr/sms/share/TeXLive/2015/texmf-dist/tex/latex/base/omscmr.fd
 File: omscmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10> not available
 (Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 211.
- [5] [6]
-(./coover.aux) ) 
+ [5]
+Overfull \hbox (3.3047pt too wide) in paragraph at lines 264--267
+[]\OT1/cmtt/m/n/10 Generator ::= Char \OT1/cmr/m/n/10 (in-deed, \OT1/cmtt/m/n/1
+0 heegaard\OT1/cmr/m/n/10 's gen-er-a-tors are al-pha-betic ASCII
+ []
+
+
+Overfull \hbox (10.58493pt too wide) in paragraph at lines 269--274
+[]\OT1/cmtt/m/n/10 Undirected[]Incidence[]Matrix ::= {Generator : {Generator : 
+Int}}\OT1/cmr/m/n/10 ;
+ []
+
+
+LaTeX Warning: Citation `LZ' on page 6 undefined on input line 282.
+
+[6] [7] (./coover.aux)
+
+LaTeX Warning: There were undefined references.
+
+ ) 
 Here is how much of TeX's memory you used:
- 1550 strings out of 495021
- 17741 string characters out of 6181349
- 72438 words of memory out of 5000000
- 4783 multiletter control sequences out of 15000+600000
+ 1549 strings out of 493090
+ 17902 string characters out of 6133082
+ 77466 words of memory out of 5000000
+ 5053 multiletter control sequences out of 15000+600000
  14243 words of font info for 56 fonts, out of 8000000 for 9000
- 14 hyphenation exceptions out of 8191
+ 1141 hyphenation exceptions out of 8191
  27i,6n,24p,221b,301s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on coover.dvi (6 pages, 11528 bytes).
+Output written on coover.dvi (7 pages, 16252 bytes).

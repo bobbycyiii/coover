@@ -233,6 +233,89 @@ for input to Python.
 
 \nwendcode{}\nwbegindocs{11}\nwdocspar
 \section{An example worked by hand}
+We now present a hand-worked example to motivate what follows.
+The following is the output of {\Tt{}heegaard\nwendquote} digested for the $1^{st}$
+presentation Andrew submitted (not the $0^{th}$ but the $1^{st}$):
+\nwenddocs{}\nwbegincode{12}\moddef{example}\endmoddef\nwstartdeflinemarkup\nwenddeflinemarkup
+heeg_data =
+(['AABACaabac', 'BCbc'],
+ \{'A':\{'a':2, 'b':2, 'C':1, 'c':1\},
+  'a':\{'B':2, 'C':1, 'c':1\},
+  'B':\{'C':1, 'c':1\},
+  'b':\{'C':1, 'c':1\}\},
+ [5,1,0],
+ \{'A':'acbC',
+  'a':'ACBc',
+  'B':'aCc',
+  'b':'AcC',
+  'C':'AbBa',
+  'c':'AaBb'\})
+\nwendcode{}\nwbegindocs{13}\nwdocspar
+Its type is
+\begin{verbatim}
+([Relator],
+ UndirectedIncidenceMatrix,
+ [FlagName],
+ {Generator:NeighborString}).
+\end{verbatim}
+\nwenddocs{}\nwbegindocs{14}\nwdocspar
+In turn,
+\begin{itemize}
+\item {\Tt{}Generator\ ::=\ Char\nwendquote} (indeed, {\Tt{}heegaard\nwendquote}'s
+      generators are alphabetic ASCII {\Tt{}Char\nwendquote}s with
+      {\Tt{}swapcase\ =\ inverse\nwendquote});
+\item {\Tt{}Relator\ ::=\ [Generator]\nwendquote}, a {\Tt{}List\nwendquote} of {\Tt{}Generator\nwendquote}s,
+      i.e. {\Tt{}Relator\ ::=\ String\nwendquote};
+\item {\Tt{}Undirected{\_}Incidence{\_}Matrix\ ::=\ {\nwlbrace}Generator\ :\ {\nwlbrace}Generator\ :\ Int{\nwrbrace}{\nwrbrace}\nwendquote};
+      the intended semantics is that if {\Tt{}inc\nwendquote} is this object for
+      a presentation with Whitehead graph $G$, and $v,w$ are vertices of
+      $G$, and $v <_{\alpha} w$, then {\Tt{}inc[v][w]\nwendquote} is the number of edges
+      between $v$ and $w$;
+\item {\Tt{}Flag{\_}Name\ ::=\ Int\nwendquote}; suffice to say for now that a \emph{flag}
+      is an incident pair of vertex and edge in the Whitehead graph; and
+\item {\Tt{}NeighborString\ ::=\ [Generator]\nwendquote}; the intended semantics of this is
+      a rotation system for the reduced Whitehead graph.
+\end{itemize}
+\nwenddocs{}\nwbegindocs{15}\nwdocspar
+Berge's documentation \cite{heeg}
+explains what Whitehead graphs are, reduced or otherwise.
+Lando and Zvonkin have written an entire monograph \cite{LZ} on rotation
+systems, i.e. on cellular graph embeddings on surfaces, i.e.
+on dessins d'enfants. Wikipedia has a quick summary of this subject.
+\nwenddocs{}\nwbegindocs{16}\nwdocspar
+Briefly, a rotation system is a pair $(\sigma, \alpha)$ of a
+\emph{somme}- or vertex-permutation $\sigma$ and an \emph{ar\^{e}te}-
+or edge-permutation $\alpha$ on a set $\Phi$ whose elements are called
+\emph{flags} or \emph{darts}, such that $\alpha^2 = e$,
+such that $\alpha$ fixes no flag, and such that $\langle \sigma, \alpha \rangle$
+acts transitively on $\Phi$. (One may also have a face-permutation $\phi$
+such that $\sigma \alpha \phi = e$.)
+\nwenddocs{}\nwbegindocs{17}\nwdocspar
+There is a natural bijection between rotation systems and labelled embeddings
+of graphs in surfaces whose complements' components are contractible (i.e. are 2-cells).
+\nwenddocs{}\nwbegindocs{18}\nwdocspar
+The Whitehead graph of a Heegaard diagram is a graph embedded on the sphere.
+One might hope to represent this embedding as a rotation system.
+A planar embedded graph admits a representation as a rotation system precisely
+when it is connected.
+\nwenddocs{}\nwbegindocs{19}\nwdocspar
+When a Heegaard diagram's Whitehead graph admits a rotation system representation,
+one may represent the entire Heegaard diagram itself with a modicum of
+additional information, as follows. Let us regard the vertices of the Whitehead
+graph as being discs in the boundary of a 3-ball, such that when one glues
+up discs of inverse vertices, one gets the base handlebody. Let $q$ be the
+quotient map from the ball to the handlebody. 
+We may regard the flags of the Whitehead graph as the union of
+preimages $q^{-1}.(\gamma \cap q.D)$ over all attaching curves $\gamma$
+in the Heegaard diagram and all vertices $D$ of the Whitehead graph.
+To determine the Heegaard diagram, it suffices to pick for every vertex $D$ a choice of flag
+$f.D$ such that for every pair of inverse vertices $d,D$, $q.(f.d) = q.(f.D)$.
+\nwenddocs{}\nwbegindocs{20}\nwdocspar
+Conversely, every flag-choice determines some Heegaard diagram with the given
+Whitehead graph.
+\nwenddocs{}\nwbegindocs{21}\nwdocspar
+
+\nwenddocs{}\nwbegindocs{22}\nwdocspar
 \section{Extraction: the core}
 \subsection{Neighbor logging suffices...}
 \subsection{The inner loop: or, the next flag}
@@ -247,6 +330,6 @@ van Gasteren, A. J. M. \emph{On the shape of mathematical arguments.}
 With a foreword by Edsger W. D{\ij}kstra. \emph{Lecture Notes in
 Computer Science}, \textbf{445}. Springer-Verlag, Berlin, 1990.
 \end{thebibliography}
-\nwenddocs{}\nwbegindocs{12}\nwdocspar
+\nwenddocs{}\nwbegindocs{23}\nwdocspar
 \end{document}
 \nwenddocs{}
