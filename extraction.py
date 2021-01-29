@@ -6,11 +6,11 @@ def incidence_matrix(heeg_datum):
     half_incidence = heeg_datum[0]
     mat = {}
     for key in half_incidence:
-        if not mat.has_key(key):
+        if key not in mat:
             mat[key] = {}
         neighbors = half_incidence[key]
         for neighbor in neighbors:
-            if not mat.has_key(neighbor):
+            if neighbor not in mat:
                 mat[neighbor] = {}
             deg = half_incidence[key][neighbor]
             mat[key][neighbor] = deg
@@ -46,7 +46,7 @@ def right_ordered_CO(heeg_datum):
     lower_case_tuple = heeg_datum[1]
     lct = lower_case_tuple
     letters = list(CO)
-    lc = filter(lambda x:x.islower(), letters)
+    lc = list(filter(lambda x:x.islower(), letters))
     assert len(lc) == len(lct)
     lc.sort()
     for pair in zip(lc,lct):
@@ -71,13 +71,13 @@ def attach_globs(heeg_datum):
 
 def ccw_flags(aCO,L):
     deg = len(aCO[L])
-    positions = range(deg)
+    positions = list(range(deg))
     if L.islower():
         positions.reverse()
-    return map(lambda n: {'letter':L,'pos':n}, positions)
+    return list(map(lambda n: {'letter':L,'pos':n}, positions))
 
 def cyclic_first(lb):
-    ps = zip(lb[:-1],lb[1:])
+    ps = list(zip(lb[:-1],lb[1:]))
     if (False,True) in ps:
         return ps.index((False,True)) + 1
     else:
@@ -88,8 +88,8 @@ def other_letter(aCO):
 
 def ccw_flags_between(aCO,L,nL):
     all_flags = ccw_flags(aCO,L)
-    endpts = map(other_letter(aCO), all_flags)
-    offset = cyclic_first(map(lambda x: x == nL, endpts))
+    endpts = list(map(other_letter(aCO), all_flags))
+    offset = cyclic_first(list(map(lambda x: x == nL, endpts)))
     N = len(all_flags)
     i = 0
     flags = []
@@ -151,24 +151,23 @@ def word_cycle(hdwg,word):
     wds = [word,rev(word),word.swapcase(),rev(word).swapcase()]
     for wd in wds:
         L = wd[0:1]
-        if not L in aCO:
+        if L not in aCO:
             continue
         for pos in range(len(aCO[L])):
             start = {'letter':L,'pos':pos}
             nxt = lambda sq : next_square(hdwg,sq)
             cyc = cycle(nxt,start)
-            A = map(lambda sq : sq['letter'], cyc)
+            A = list(map(lambda sq : sq['letter'], cyc))
             B = list(wd)
             if cyclically_equal(A,B):
                 return cyc
-    else:
-        raise Exception(str(hdwg) + " " + word)
+    raise Exception(str(hdwg) + " " + word)
 
 def twister_number_dict(heeg_datum_w_globs):
     hdwg = heeg_datum_w_globs
     (heeg_datum, aug_CO, inc) = hdwg
     deg = lambda letter:len(aug_CO[letter])
-    UClets = filter(lambda x: x.isupper(), aug_CO)
+    UClets = list(filter(lambda x: x.isupper(), aug_CO))
     UClets.sort()
     dct = {}
     sq_num = 1 # We start the square numbering at 1,
@@ -208,7 +207,7 @@ def all_twister_nums(heeg_datum_w_globs, words):
     for (word,tnums) in ws:
         wns.extend(tnums)
     ag = h[1]
-    UClets = filter(lambda x:x.isupper(), list(ag))
+    UClets = list(filter(lambda x:x.isupper(), list(ag)))
     gs = []
     deg = lambda x: len(ag[x])
     for L in UClets:
@@ -248,6 +247,6 @@ def twister_string(heeg_datum,words):
     return header + body
 
 def heegaard_to_twister(digested):
-    words = digested[:2]
-    heeg_datum = digested[2:]
+    words = digested[0]
+    heeg_datum = digested[1:]
     return twister_string(heeg_datum,words)
