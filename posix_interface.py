@@ -4,12 +4,11 @@
 
 import os
 
-def twister_write(name,digested):
+def twister_write(name, digested):
     sname = name + ".sur"
     os.system("touch " + sname)
-    s = open(sname,'w')
-    s.write(heegaard_to_twister(digested))
-    s.close()
+    with open(sname,'w') as s:
+      s.write(heegaard_to_twister(digested))
     tname = name + ".tri"
     command = "./Twister.out -f \"" + sname + "\" "
     command = command + "-s \"\" "
