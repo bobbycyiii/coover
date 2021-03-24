@@ -18,6 +18,8 @@ def skip_returns(stream):
     line = stream.readline()
     while not line.rstrip():
       line = stream.readline()
+      if not line:
+        return None
     return line
   except:
     print("Error: bad file stream")
@@ -69,6 +71,8 @@ def get_diagram_info(relations, heegaard_bin):
   pres_str = ''
   while "Data For Diagram" not in line:
     line = skip_returns(output)
+    if not line:
+      return None, "No diagram found"
     pres_str += line
 
   pres_num = re.match(r'\s+Data For Diagram (\d+) ', line)[1]
@@ -155,7 +159,7 @@ def get_diagram_info(relations, heegaard_bin):
 def get_diagram_data(relations, heegaard_bin):
   heeg_info, err = get_diagram_info(relations, heegaard_bin)
   if err:
-    print("Error with heergaarf info: {}".format(err))
+    print("Error with heergaard info: {}".format(err))
     return None, err
 
   edge_data = {}
