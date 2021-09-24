@@ -25,12 +25,12 @@ def skip_returns(stream):
     print("Error: bad file stream")
     return None
 
-def get_diagram_info(relations, heegaard_bin):
+def get_diagram_info(relations, heegaard_bin, reduce=False):
   """
 
-  >>> get_diagram_data(['aabbAbbaabbABAAABAbb', 'aabbaabbbaabbABAbbaabbbaabbaabbb'])
-  >>> get_diagram_data(['bbaaccabc'])
-  >>> get_diagram_data(['AABCab','ACCBcb'])
+  >>> get_diagram_info(['aabbAbbaabbABAAABAbb', 'aabbaabbbaabbABAbbaabbbaabbaabbb'])
+  >>> get_diagram_info(['bbaaccabc'])
+  >>> get_diagram_info(['AABCab','ACCBcb'])
 
   """
 
@@ -44,19 +44,20 @@ def get_diagram_info(relations, heegaard_bin):
 
   cmds += [pres_name, '\n']
 
-  # TODO Reduction seems unnecessary
-  # r - We should reduce our presentation before getting the data
-  # n - Do not form bandsums
-  # n - Do not delete all primitive relators
-  # n - Do not even delete small primitive relators
-  # n - Do not turn on Micro_Printing
-  cmds += ['r', 'n', 'n', 'n', 'n']
-  # d - Run the diagram algorithm.
-  # n - Do not review presentations (does not always appear)
-  cmds += ['d', 'n', 'b', 'q', 'q']
-
-  # d - Run the diagram algorithm. Heegaard should reduce on its own
-  # cmds += ['d', '\n']
+  if reduce:
+    # TODO Reduction seems unnecessary
+    # r - We should reduce our presentation before getting the data
+    # n - Do not form bandsums
+    # n - Do not delete all primitive relators
+    # n - Do not even delete small primitive relators
+    # n - Do not turn on Micro_Printing
+    cmds += ['r', 'n', 'n', 'n', 'n']
+    # d - Run the diagram algorithm.
+    # n - Do not review presentations (does not always appear)
+    cmds += ['d', 'n', 'b', 'q', 'q']
+  else:
+    # d - Run the diagram algorithm. Heegaard should reduce on its own
+    cmds += ['d', '\n']
 
   output_str, err = tty_capture(heegaard_bin, cmds)
 
@@ -78,9 +79,13 @@ def get_diagram_info(relations, heegaard_bin):
   pres_num = re.match(r'\s+Data For Diagram (\d+) ', line)[1]
   pres_out = io.StringIO(pres_str)
   pres_line = ''
-  while "Presentation {} ".format(pres_num) not in pres_line:
-    pres_line = skip_returns(pres_out) 
-  
+  if reduce:
+    while "Presentation {} ".format(pres_num) not in pres_line:
+      pres_line = skip_returns(pres_out)
+  else:
+    while "rewritten initial presentation is" not in pres_line:
+      pres_line = skip_returns(pres_out)
+
   rels = []
   pres_line = skip_returns(pres_out)
   if pres_line[0] != ' ':
@@ -156,8 +161,8 @@ def get_diagram_info(relations, heegaard_bin):
            'co_list': co_list}, None)
 
 
-def get_diagram_data(relations, heegaard_bin):
-  heeg_info, err = get_diagram_info(relations, heegaard_bin)
+def get_diagram_data(relations, heegaard_bin, reduce=False):
+  heeg_info, err = get_diagram_info(relations, heegaard_bin, reduce)
   if err:
     print("Error with heergaard info: {}".format(err))
     return None, err

@@ -11,14 +11,21 @@ def relators_to_tri(relators, heegaard_bin, name=None,
   datum, err = dd.get_diagram_data(relators, heegaard_bin)
 
   if err:
-    print('Error getting diagram: {}\n    {}'.format(err, datum))
+    datum, err = dd.get_diagram_data(relators, heegaard_bin, reduce=True)
+    if err:
+        print('Error getting diagram: {}\n    {}'.format(err, datum))
 
   sur_file = name + '.sur'
+  sur_string = ext.heegaard_to_twister(datum)
+
+  if sur_string is None:
+    return None
 
   with open(sur_file, 'w') as fp:
-    fp.write(ext.heegaard_to_twister(datum))
+    fp.write(sur_string)
 
   sur = sp.twister.Surface(sur_file)
+
   rels = datum[0] #TODO fix this convertion
   gens = list(set(''.join(rels).lower()))
   handles = '*'.join(gens + rels)
