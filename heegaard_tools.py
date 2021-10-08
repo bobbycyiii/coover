@@ -8,7 +8,7 @@ import subprocess
 from random import randrange
 
 def tty_capture(cmd, args, read_size=2048, sleep_count=1,
-                sleep_interval=0.5, arg_interval=0.1):
+                sleep_interval=0.1, arg_interval=0.05):
   """Capture the output of cmd with args to stdin,
   with stdin, stdout and stderr as TTYs.
 

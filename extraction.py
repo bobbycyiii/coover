@@ -247,6 +247,9 @@ def twister_string(heeg_datum,words):
     return header + body
 
 def heegaard_to_twister(digested):
-    words = digested[0]
-    heeg_datum = digested[1:]
-    return twister_string(heeg_datum,words)
+    if digested:
+        words = digested[0]
+        heeg_datum = digested[1:]
+        return twister_string(heeg_datum, words)
+    else:
+        return None

@@ -18,17 +18,19 @@ def skip_returns(stream):
     line = stream.readline()
     while not line.rstrip():
       line = stream.readline()
+      if not line:
+        return None
     return line
   except:
     print("Error: bad file stream")
     return None
 
-def get_diagram_info(relations, heegaard_bin):
+def get_diagram_info(relations, heegaard_bin, reduce=False):
   """
 
-  >>> get_diagram_data(['aabbAbbaabbABAAABAbb', 'aabbaabbbaabbABAbbaabbbaabbaabbb'])
-  >>> get_diagram_data(['bbaaccabc'])
-  >>> get_diagram_data(['AABCab','ACCBcb'])
+  >>> get_diagram_info(['aabbAbbaabbABAAABAbb', 'aabbaabbbaabbABAbbaabbbaabbaabbb'])
+  >>> get_diagram_info(['bbaaccabc'])
+  >>> get_diagram_info(['AABCab','ACCBcb'])
 
   """
 
@@ -42,19 +44,20 @@ def get_diagram_info(relations, heegaard_bin):
 
   cmds += [pres_name, '\n']
 
-  # TODO Reduction seems unnecessary
-  # r - We should reduce our presentation before getting the data
-  # n - Do not form bandsums
-  # n - Do not delete all primitive relators
-  # n - Do not even delete small primitive relators
-  # n - Do not turn on Micro_Printing
-  cmds += ['r', 'n', 'n', 'n', 'n']
-  # d - Run the diagram algorithm.
-  # n - Do not review presentations (does not always appear)
-  cmds += ['d', 'n', 'b', 'q', 'q']
-
-  # d - Run the diagram algorithm. Heegaard should reduce on its own
-  # cmds += ['d', '\n']
+  if reduce:
+    # TODO Reduction seems unnecessary
+    # r - We should reduce our presentation before getting the data
+    # n - Do not form bandsums
+    # n - Do not delete all primitive relators
+    # n - Do not even delete small primitive relators
+    # n - Do not turn on Micro_Printing
+    cmds += ['r', 'n', 'n', 'n', 'n']
+    # d - Run the diagram algorithm.
+    # n - Do not review presentations (does not always appear)
+    cmds += ['d', 'n', 'b', 'q', 'q']
+  else:
+    # d - Run the diagram algorithm. Heegaard should reduce on its own
+    cmds += ['d', '\n']
 
   output_str, err = tty_capture(heegaard_bin, cmds)
 
@@ -69,14 +72,20 @@ def get_diagram_info(relations, heegaard_bin):
   pres_str = ''
   while "Data For Diagram" not in line:
     line = skip_returns(output)
+    if not line:
+      return None, "No diagram found"
     pres_str += line
 
   pres_num = re.match(r'\s+Data For Diagram (\d+) ', line)[1]
   pres_out = io.StringIO(pres_str)
   pres_line = ''
-  while "Presentation {} ".format(pres_num) not in pres_line:
-    pres_line = skip_returns(pres_out) 
-  
+  if reduce:
+    while "Presentation {} ".format(pres_num) not in pres_line:
+      pres_line = skip_returns(pres_out)
+  else:
+    while "rewritten initial presentation is" not in pres_line:
+      pres_line = skip_returns(pres_out)
+
   rels = []
   pres_line = skip_returns(pres_out)
   if pres_line[0] != ' ':
@@ -112,7 +121,8 @@ def get_diagram_info(relations, heegaard_bin):
 
   # See if we make it to clockwise order of vertices
   clockwise_trigger = "Vertices in the boundary of each face of the Heegaard diagram in clockwise order are"
-  line = skip_returns(output)
+  while "II)" not in line:
+    line = skip_returns(output)
   if clockwise_trigger not in line:
     print('Error no clockwise trigger: {0}'.format(line))
     return ({'relators': rels,
@@ -152,10 +162,10 @@ def get_diagram_info(relations, heegaard_bin):
            'co_list': co_list}, None)
 
 
-def get_diagram_data(relations, heegaard_bin):
-  heeg_info, err = get_diagram_info(relations, heegaard_bin)
+def get_diagram_data(relations, heegaard_bin, reduce=False):
+  heeg_info, err = get_diagram_info(relations, heegaard_bin, reduce)
   if err:
-    print("Error with heergaarf info: {}".format(err))
+    print("Error with heergaard info: {}".format(err))
     return None, err
 
   edge_data = {}
