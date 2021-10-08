@@ -121,7 +121,8 @@ def get_diagram_info(relations, heegaard_bin, reduce=False):
 
   # See if we make it to clockwise order of vertices
   clockwise_trigger = "Vertices in the boundary of each face of the Heegaard diagram in clockwise order are"
-  line = skip_returns(output)
+  while "II)" not in line:
+    line = skip_returns(output)
   if clockwise_trigger not in line:
     print('Error no clockwise trigger: {0}'.format(line))
     return ({'relators': rels,
