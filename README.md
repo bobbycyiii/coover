@@ -10,6 +10,18 @@ of a solution to the following problem: given a realizable finite
 presentation *P* of a group *G*, to construct a (possibly ideal) 3-manifold
 triangulation with fundamental group *G*.
 
+## Authors and code sources
+
+The code processing heegaard output was written by Robert
+Haraway with contributions by Andrew Yarmola
+
+The code for finding minimal length words under Aut(F_2)
+was written by Marco Linton.
+
+Code of identifying manifolds using Regina via their
+triangualtions was written by Nathan Dunfield with edits
+by David Futer, Saul Schleimer, and Jessica Purcell 
+
 ## Digestion
 Using a series of regular expressions, digestion
 converts the output of a `heegaard` session into
